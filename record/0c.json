@@ -1,0 +1,84 @@
+{
+  "step": "0c",
+  "title": "Give it one search",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": true,
+  "checkpoints": [
+    {
+      "text": "The one-search baseline's answer is saved in runs/part0/",
+      "reached": true
+    },
+    {
+      "text": "Your answers are in WRITEUP.md",
+      "reached": true
+    }
+  ],
+  "answers": [
+    {
+      "question": "Which Wikipedia page did it read? Quote the line of the output that shows it.",
+      "answer": "Verdict: doesn't say\nExplanation: The provided Wikipedia text covers only Ahmet Zappa's birth date (May 15, 1974) and career summary, and does not mention the composer of \"Persian Surgery Dervishes\" or any birth date of such a composer.",
+      "written_by": "the student"
+    },
+    {
+      "question": "Did that page settle the claim correctly? If not, why do you think the search led there?",
+      "answer": "No. It searched for a name that doesn't seem to be associated with the search. (the composer is Terry Riley)",
+      "written_by": "the student"
+    }
+  ],
+  "record": [
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-22T21:25:56-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "The composer of \"Persian Surgery Dervishes\" was born on June 24, 1935.",
+      "time": "2026-11-22T21:32:29-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Ran check.py --method one-search",
+      "status": "ok",
+      "file": "runs/part0/one-search-1795404752.json",
+      "time": "2026-11-22T21:32:31-06:00"
+    },
+    {
+      "kind": "said",
+      "verdict": "doesn't say",
+      "reason": "The provided Wikipedia text covers only Ahmet Zappa's birth date (May 15, 1974) and career summary, and does not mention the composer of \"Persian Surgery Dervishes\" or any birth date of such a composer.",
+      "lookups": 2,
+      "what": "Ran check.py --method one-search",
+      "file": "runs/part0/one-search-1795404752.json",
+      "expected": null,
+      "reached": [
+        "The one-search baseline's answer is saved in runs/part0/",
+        "Your answers are in WRITEUP.md"
+      ],
+      "time": "2026-11-22T21:32:35-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-22T21:25:59-06:00",
+      "kind": "status",
+      "text": "Waiting for you to ask for the one-search run"
+    },
+    {
+      "time": "2026-11-22T21:32:31-06:00",
+      "kind": "status",
+      "text": "Running the one-search baseline on the claim"
+    },
+    {
+      "time": "2026-11-22T21:32:37-06:00",
+      "kind": "status",
+      "text": "Waiting for your answers in WRITEUP.md"
+    }
+  ],
+  "turns": 2
+}

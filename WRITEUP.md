@@ -1,6 +1,6 @@
 # COMP 440 HW3 write-up
 
-Name:
+Name: Nayla Trigueros
 
 Type each answer after the `>` under its question. An answer can run over several lines, but a blank line
 ends it: to start a new paragraph, put a line with just `>` between the two. In a table, fill every cell
@@ -28,31 +28,33 @@ There is nothing to write for this step except your name, after `Name:` at the t
 
 What verdict did the model give (*supported*, *refuted* or *doesn't say*), and what reason did it give? Quote the lines of the output that show them.
 
->
+> Verdict: doesn't say
+Explanation: I cannot confirm from memory who composed "Persian Surgery Dervishes" or what English Wikipedia states about that composer's birth date, so I can't verify the June 24, 1935 claim.
 
 ## 0c. Give it one search
 
 Which Wikipedia page did it read? Quote the line of the output that shows it.
 
->
+>Verdict: doesn't say
+Explanation: The provided Wikipedia text covers only Ahmet Zappa's birth date (May 15, 1974) and career summary, and does not mention the composer of "Persian Surgery Dervishes" or any birth date of such a composer.
 
 Did that page settle the claim correctly? If not, why do you think the search led there?
 
->
+> No. It searched for a name that doesn't seem to be associated with the search. (the composer is Terry Riley)
 
 ## 0d. Run the agent and read its trace
 
 In one or two sentences, how did the agent get from the claim to its verdict? Point to the trace entries by their numbers.
 
->
+> 1- looked up the composer, 2- looked up the album, 3- looked up Tyler Perry.
 
 Which lookup would you have done differently, and how? If none, which one surprised you?
 
->
+> I would have skipped trace 2, since the information it needs is already on lookup 1.
 
 Describe Wikidata briefly. Why may it be important to this task?
 
->
+> It gives background information for a given search. Since we want to know details about a person, it helps by providing that necessary info.
 
 # Part 1: How the agent works
 

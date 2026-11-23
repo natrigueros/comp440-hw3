@@ -1,0 +1,30 @@
+{
+ "claim": "The composer of \"Persian Surgery Dervishes\" was born on June 24, 1935.",
+ "verdict": "doesn't say",
+ "evidence": [],
+ "explanation": "The provided Wikipedia text covers only Ahmet Zappa's birth date (May 15, 1974) and career summary, and does not mention the composer of \"Persian Surgery Dervishes\" or any birth date of such a composer.",
+ "trace": [
+  {
+   "tool": "search",
+   "input": {
+    "query": "Frank Zappa birth date"
+   },
+   "result": "1. Ahmet Zappa: California, the third of four children born to musician Frank Zappa and businesswoman Gail Zappa. His father was of Sicilian, Greek, Arab, and French descent\n2. Moon Zappa: Moon Unit Zappa (born September 28, 1967) is an American actress, singer, and author. She is a daughter of musician Frank Zappa. Moon Zappa was born in\n3. Frank Zappa: Frank Vincent Zappa (December 21, 1940\u00a0\u2013 December 4, 1993) was an American musician, actor, satirist, filmmaker, and activist. In a career spanning more\n4. Terry Bozzio: with Missing Persons, U.K., and Frank Zappa. He has been featured on nine solo or collaborative albums, 26 albums with Zappa and five albums with Missing\n5. Lumpy Gravy: 1968 solo album by Frank Zappa (originally credited as Francis Vincent Zappa, and as Frank Vincent Zappa on reissues), written by Zappa and performed by"
+  },
+  {
+   "tool": "read",
+   "input": {
+    "title": "Ahmet Zappa"
+   },
+   "result": "Page: Ahmet Zappa\n\nAhmet Emuukha Rodan Zappa (born May 15, 1974) is an American musician, writer, actor and trustee of the Zappa Family Trust.\n\nSections: Early life, Career, Personal life, Discography, Filmography, Television, External links"
+  }
+ ],
+ "steps": 2,
+ "tokens": {
+  "input": 317,
+  "output": 418
+ },
+ "cost_usd": 0.000241,
+ "seconds": 3.6926088333129883,
+ "method": "one-search"
+}

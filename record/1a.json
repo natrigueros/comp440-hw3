@@ -1,0 +1,76 @@
+{
+  "step": "1a",
+  "title": "Design the loop",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": false,
+  "checkpoints": [
+    {
+      "text": "Your outline is in WRITEUP.md",
+      "reached": false
+    },
+    {
+      "text": "Your loop in my_loop.py passes every rule of the check",
+      "reached": false
+    },
+    {
+      "text": "Your answers are in WRITEUP.md",
+      "reached": false
+    }
+  ],
+  "answers": [
+    {
+      "question": "Write your outline of the loop in the code block: what it remembers, what it repeats, and every way it stops.",
+      "answer": "",
+      "written_by": null
+    },
+    {
+      "question": "List each thing your loop remembers from one turn to the next, and say what would go wrong without it.",
+      "answer": "",
+      "written_by": null
+    },
+    {
+      "question": "Now open `reference_loop.py` and compare it with your loop. Describe one difference in implementation and the resulting effects on agent behavior.",
+      "answer": "",
+      "written_by": null
+    }
+  ],
+  "record": [
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:38:15-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "In this step you design the agent's loop. You write an outline of its logic in plain words, and Claude translates your outline into Python. The loop asks the model for lookups, runs the lookups it chooses, sends back what they return, and stops.",
+      "time": "2026-11-25T08:38:57-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:38:59-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:40:29-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-25T08:40:34-06:00",
+      "kind": "status",
+      "text": "Waiting for your outline in WRITEUP.md"
+    }
+  ],
+  "turns": 3
+}

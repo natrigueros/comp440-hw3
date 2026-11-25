@@ -67,15 +67,56 @@ The Background and an example outline are under 1a on the homework page, and in 
 Write your outline of the loop in the code block: what it remembers, what it repeats, and every way it stops.
 
 ```
+Remember:
+  1. The history: the claim and starting instructions, then every model reply and every turn of lookup results, in order.
+     Set at the start. Added to after each model call, and added to once per model reply that asked for lookups (all of that reply's results together, plus any limit note).
+  2. The lookups used: none yet. Goes up by one each time a lookup is actually made. Nothing else changes it.
+  3. The turns taken: none yet. Goes up by one each time the model is called.
+  4. The results of this reply: empty at the start of each turn.
+     Filled as each lookup in this reply is made. Emptied once added to the history.
+  Fixed, never changed: the lookup limit (12), turn cap (20).
+
+Repeat:
+    If the turns taken have reached the turn cap:
+        Stop with no verdict.
+    Send the whole history to the model and get its next step. Count the turn.
+    Add the model's reply to the history.
+
+    If the step contains an answer:
+        Stop with that answer. (Any lookups in the same step are not made.)
+
+    Work out the lookups remaining (limit minus lookups used).
+
+    If the step asks for lookups and none remain:
+        Stop with no verdict.
+
+    If the step asks for lookups:
+        Start with the results of this reply empty.
+        Take the requested lookups in order, only as many as remain.
+        For each one taken:
+            Make it, put its result (errors and empty results count) in the results of this reply, and add one to the lookups used.
+            Do not add it to the history yet.
+        If some were left out for the limit:
+            Put a note in the results of this reply saying which were not made and that no lookups remain, so the model must answer now.
+        Now add all the results of this reply to the history together, as one turn, in the order the lookups were asked.
+
+    If the step asks for nothing and gives no answer:
+        Go on to the next turn.
+
+Ways the loop stops:
+  1. The model gives an answer: stop with that answer.
+  2. The model asks for lookups when all 12 are used: stop with no verdict.
+  3. The turn cap is reached without an answer: stop with no verdict.
 ```
 
 List each thing your loop remembers from one turn to the next, and say what would go wrong without it.
 
->
+>The model remembers nothing between calls, so without the history it would see only the bare claim every time. It would repeat the same lookups, never see what they returned, and never reach an answer.  Without lookups count, the loop cannot tell when 12 is reached. It would either run past the limit, which breaks the rule, or never recognize a claim that has run out of lookups and so cannot be decided Lookups only count when they are made, so a model that stalls (no lookup, no answer, turn after turn) never uses any of its 12. Without a turn count, that loop would never stop.
+
 
 Now open `reference_loop.py` and compare it with your loop. Describe one difference in implementation and the resulting effects on agent behavior.
 
->
+>The main difference is how each loop enforces the 12-lookup limit. The reference checks the limit once per turn, before a batch starts, and then runs every lookup the model asked for. So if 11 lookups are used and the model asks for 3, the reference runs all 3 and ends at 14. My outline takes only as many lookups as remain, skips the rest, and adds a note telling the model none are left, so it never goes over 12. The effect is that the reference lets the model see everything it asked for on its last turn but can overshoot the limit, while mine stays within the limit but gives the model a partial batch on its last turn.
 
 ## 1b. Be the agent
 
@@ -85,11 +126,11 @@ List your lookups, in order. Ask Claude to paste every column but the last from 
 
 | # | Tool | What you asked for | Why you chose it |
 |---|---|---|---|
-| 1 | | | |
+| 1 | search | Vic and Anthony's Steakhouse| Simplest
 
 What is your verdict on the claim, and which sentence or sentences from what you read is it based on?
 
->
+> verdict is verified from 1 lookup, as i can deduct that it is owned by Landry's Inc. by line 3 and 4.
 
 ## 1c. Watch the agent work
 
@@ -97,19 +138,19 @@ List the three traces you read closely. At least one should be a claim the agent
 
 | # | Claim (first few words) | Articles | Did it match the dataset's label? | Did it get there for a good reason? Why or why not |
 |---|---|---|---|---|
-| 1 | | | | |
-| 2 | | | | |
-| 3 | | | | |
+| 1 | Myles Kennedy and Robert Palmer| Myles Kennedy, Robert Palmer(singer)|yes| yes, as the results indicate the claim is correct |
+| 2 |The rule of the dynasty that was active | History of Egypt, Ptolemaic dynasty, Rosetta Stone| no| yes, its fair enough, since the second sentence is wrong |
+| 3 | The quartets that released One Thousand Years | Age of Chance, One Thousand Years of Trouble, Vector (band)| yes | yes, as Vector is not a rock band but a metal one|
 
 Which trace did you find most interesting, and what did the agent do well or badly in it?
 
->
+> I thought it was interesting that it was so detailed with the Rosetta Stone one. I wouldve brushed over the fact that it is from a different "book".
 
 ## 1d. Write the agent's instructions
 
 What changed in the agent's traces after you wrote your instructions? Give one claim as an example.
 
->
+> One that didn't match before but does match after: The rule of the dynasty that was active when the stone was inscribed was 275 years long. The reasoning it gives is that "Hystory of Egypt" is a loose paraphrasing and not a definitive role. 
 
 ## 1e. Start the full run, and predict
 
@@ -117,13 +158,13 @@ Predict the share of claims each version will get right (its verdict matches the
 
 | Version | 2 articles | 3 articles | 4 articles | Why you think so |
 |---|---|---|---|---|
-| No tools | | | | |
-| One search | | | | |
-| Agent | | | | |
+| No tools | 10%| 40%| 50%| Without any tools, it will likely need more lookups|
+| One search |20% | 35%| 45% | With one search, it might get to the right answer faster but not quite|
+| Agent | 30%| 45%| 25%| An agent will be faster and more efficient|
 
 How many lookups will the agent make per claim, on average? Why?
 
->
+> On average, it will make around 3-4. This is because it often needs more than two, but very rarely needs more than 5, so an inbetween those two seems a good standard.
 
 # Part 2: The agent against the baselines
 

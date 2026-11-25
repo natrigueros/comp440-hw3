@@ -1,0 +1,99 @@
+{
+  "step": "1d",
+  "title": "Write the agent's instructions",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": true,
+  "checkpoints": [
+    {
+      "text": "Your own instructions are in instructions.md, and say: how to break a claim into pieces; when to use wikidata; when to stop; when to answer \"doesn't say\"",
+      "reached": true
+    },
+    {
+      "text": "The second run on your 12 development claims is saved",
+      "reached": true
+    },
+    {
+      "text": "Your answer is in WRITEUP.md",
+      "reached": true
+    }
+  ],
+  "answers": [
+    {
+      "question": "What changed in the agent's traces after you wrote your instructions? Give one claim as an example.",
+      "answer": "One that didn't match before but does match after: The rule of the dynasty that was active when the stone was inscribed was 275 years long. The reasoning it gives is that \"Hystory of Egypt\" is a loose paraphrasing and not a definitive role.",
+      "written_by": "the student"
+    }
+  ],
+  "record": [
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T09:55:46-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "I wrote my instructions, check instructions.md",
+      "time": "2026-11-25T10:01:46-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Looked at a git diff",
+      "status": "ok",
+      "file": null,
+      "reached": [
+        "Your own instructions are in instructions.md, and say: how to break a claim into pieces; when to use wikidata; when to stop; when to answer \"doesn't say\""
+      ],
+      "time": "2026-11-25T10:01:47-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "run the agent on my 12 development claims again",
+      "time": "2026-11-25T10:02:05-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Ran evaluate.py data/dev.jsonl --methods agent",
+      "status": "ok",
+      "file": null,
+      "reached": [
+        "The second run on your 12 development claims is saved",
+        "Your answer is in WRITEUP.md"
+      ],
+      "time": "2026-11-25T10:02:06-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-25T09:55:49-06:00",
+      "kind": "status",
+      "text": "Waiting for your instructions in instructions.md"
+    },
+    {
+      "time": "2026-11-25T10:01:49-06:00",
+      "kind": "checkpoint",
+      "n": 1,
+      "text": "Your own instructions are in instructions.md, and say: how to break a claim into pieces; when to use wikidata; when to stop; when to answer \"doesn't say\""
+    },
+    {
+      "time": "2026-11-25T10:01:49-06:00",
+      "kind": "status",
+      "text": "Waiting for you to ask for the second run"
+    },
+    {
+      "time": "2026-11-25T10:02:06-06:00",
+      "kind": "status",
+      "text": "Running the agent on your 12 claims with your instructions"
+    },
+    {
+      "time": "2026-11-25T10:02:58-06:00",
+      "kind": "status",
+      "text": "Run saved; you compare the two runs in Results"
+    }
+  ],
+  "turns": 3
+}

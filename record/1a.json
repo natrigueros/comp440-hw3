@@ -5,36 +5,36 @@
   "conversations": [
     "b24fcd33-65e6-422a-82c3-095e021f1fff"
   ],
-  "complete": false,
+  "complete": true,
   "checkpoints": [
     {
       "text": "Your outline is in WRITEUP.md",
-      "reached": false
+      "reached": true
     },
     {
       "text": "Your loop in my_loop.py passes every rule of the check",
-      "reached": false
+      "reached": true
     },
     {
       "text": "Your answers are in WRITEUP.md",
-      "reached": false
+      "reached": true
     }
   ],
   "answers": [
     {
       "question": "Write your outline of the loop in the code block: what it remembers, what it repeats, and every way it stops.",
-      "answer": "",
-      "written_by": null
+      "answer": "Remember:\n  1. The history: the claim and starting instructions, then every model reply and every turn of lookup results, in order.\n     Set at the start. Added to after each model call, and added to once per model reply that asked for lookups (all of that reply's results together, plus any limit note).\n  2. The lookups used: none yet. Goes up by one each time a lookup is actually made. Nothing else changes it.\n  3. The turns taken: none yet. Goes up by one each time the model is called.\n  4. The results of this reply: empty at the start of each turn.\n     Filled as each lookup in this reply is made. Emptied once added to the history.\n  Fixed, never changed: the lookup limit (12), turn cap (20).\n\nRepeat:\n    If the turns taken have reached the turn cap:\n        Stop with no verdict.\n    Send the whole history to the model and get its next step. Count the turn.\n    Add the model's reply to the history.\n\n    If the step contains an answer:\n        Stop with that answer. (Any lookups in the same step are not made.)\n\n    Work out the lookups remaining (limit minus lookups used).\n\n    If the step asks for lookups and none remain:\n        Stop with no verdict.\n\n    If the step asks for lookups:\n        Start with the results of this reply empty.\n        Take the requested lookups in order, only as many as remain.\n        For each one taken:\n            Make it, put its result (errors and empty results count) in the results of this reply, and add one to the lookups used.\n            Do not add it to the history yet.\n        If some were left out for the limit:\n            Put a note in the results of this reply saying which were not made and that no lookups remain, so the model must answer now.\n        Now add all the results of this reply to the history together, as one turn, in the order the lookups were asked.\n\n    If the step asks for nothing and gives no answer:\n        Go on to the next turn.\n\nWays the loop stops:\n  1. The model gives an answer: stop with that answer.\n  2. The model asks for lookups when all 12 are used: stop with no verdict.\n  3. The turn cap is reached without an answer: stop with no verdict.",
+      "written_by": "the student"
     },
     {
       "question": "List each thing your loop remembers from one turn to the next, and say what would go wrong without it.",
-      "answer": "",
-      "written_by": null
+      "answer": "The model remembers nothing between calls, so without the history it would see only the bare claim every time. It would repeat the same lookups, never see what they returned, and never reach an answer.  Without lookups count, the loop cannot tell when 12 is reached. It would either run past the limit, which breaks the rule, or never recognize a claim that has run out of lookups and so cannot be decided Lookups only count when they are made, so a model that stalls (no lookup, no answer, turn after turn) never uses any of its 12. Without a turn count, that loop would never stop.",
+      "written_by": "the student"
     },
     {
       "question": "Now open `reference_loop.py` and compare it with your loop. Describe one difference in implementation and the resulting effects on agent behavior.",
-      "answer": "",
-      "written_by": null
+      "answer": "The main difference is how each loop enforces the 12-lookup limit. The reference checks the limit once per turn, before a batch starts, and then runs every lookup the model asked for. So if 11 lookups are used and the model asks for 3, the reference runs all 3 and ends at 14. My outline takes only as many lookups as remain, skips the rest, and adds a note telling the model none are left, so it never goes over 12. The effect is that the reference lets the model see everything it asked for on its last turn but can overshoot the limit, while mine stays within the limit but gives the model a partial batch on its last turn.",
+      "written_by": "the student"
     }
   ],
   "record": [
@@ -62,7 +62,71 @@
       "text": "Listed files",
       "status": "ok",
       "file": null,
+      "reached": [
+        "Your outline is in WRITEUP.md"
+      ],
       "time": "2026-11-25T08:40:29-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "translate my outline into my_loop.py",
+      "time": "2026-11-25T08:52:26-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Ran grep",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:52:28-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Find the ready-made sentences in agent.py",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:52:49-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Edited my_loop.py",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:53:01-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "run the check",
+      "time": "2026-11-25T08:54:14-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Ran check_loop.py",
+      "status": "error",
+      "file": null,
+      "time": "2026-11-25T08:54:16-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "translate my outline again and run the check",
+      "time": "2026-11-25T08:56:54-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Edited my_loop.py",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T08:57:14-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Ran check_loop.py",
+      "status": "ok",
+      "file": null,
+      "reached": [
+        "Your loop in my_loop.py passes every rule of the check",
+        "Your answers are in WRITEUP.md"
+      ],
+      "time": "2026-11-25T08:57:15-06:00"
     }
   ],
   "told_the_page": [
@@ -70,7 +134,42 @@
       "time": "2026-11-25T08:40:34-06:00",
       "kind": "status",
       "text": "Waiting for your outline in WRITEUP.md"
+    },
+    {
+      "time": "2026-11-25T08:52:28-06:00",
+      "kind": "status",
+      "text": "Translating your outline into my_loop.py"
+    },
+    {
+      "time": "2026-11-25T08:53:03-06:00",
+      "kind": "status",
+      "text": "Outline translated; waiting for you to ask for the check"
+    },
+    {
+      "time": "2026-11-25T08:54:16-06:00",
+      "kind": "status",
+      "text": "Running the check on your loop"
+    },
+    {
+      "time": "2026-11-25T08:54:20-06:00",
+      "kind": "status",
+      "text": "Check: rule 2 not yet; you trace your outline"
+    },
+    {
+      "time": "2026-11-25T08:57:00-06:00",
+      "kind": "status",
+      "text": "Translating your new outline into my_loop.py"
+    },
+    {
+      "time": "2026-11-25T08:57:15-06:00",
+      "kind": "status",
+      "text": "Running the check on your loop"
+    },
+    {
+      "time": "2026-11-25T08:57:18-06:00",
+      "kind": "status",
+      "text": "Check passes; waiting for your answers in WRITEUP.md"
     }
   ],
-  "turns": 3
+  "turns": 6
 }

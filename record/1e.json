@@ -1,0 +1,59 @@
+{
+  "step": "1e",
+  "title": "Start the full run, and predict",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": true,
+  "checkpoints": [
+    {
+      "text": "The full run has started",
+      "reached": true
+    },
+    {
+      "text": "Your predictions and answer are in WRITEUP.md",
+      "reached": true
+    }
+  ],
+  "answers": [
+    {
+      "question": "Predict the share of claims each version will get right (its verdict matches the dataset's label), as a percentage. A guess is fine; the reasons are what I grade.",
+      "answer": "No tools | 10% | 40% | 50% | Without any tools, it will likely need more lookups\nOne search | 20% | 35% | 45% | With one search, it might get to the right answer faster but not quite\nAgent | 30% | 45% | 25% | An agent will be faster and more efficient",
+      "written_by": "the student"
+    },
+    {
+      "question": "How many lookups will the agent make per claim, on average? Why?",
+      "answer": "On average, it will make around 3-4. This is because it often needs more than two, but very rarely needs more than 5, so an inbetween those two seems a good standard.",
+      "written_by": "the student"
+    }
+  ],
+  "record": [
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T10:31:16-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "error",
+      "file": null,
+      "reached": [
+        "The full run has started",
+        "Your predictions and answer are in WRITEUP.md"
+      ],
+      "time": "2026-11-25T10:31:19-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-25T10:31:22-06:00",
+      "kind": "status",
+      "text": "Waiting for you to start the full run"
+    }
+  ],
+  "turns": 1
+}

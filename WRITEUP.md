@@ -173,19 +173,38 @@ How many lookups will the agent make per claim, on average? Why?
 Ask Claude to paste the report of your full run, from `runs/part2/report.txt`, into the empty block below.
 
 ```
+Share of claims where the verdict matched the label:
+
+                          no-tools  one-search       agent
+HoVer, 2 articles         18/34       18/34       23/34   
+HoVer, 3 articles         23/33       16/33       25/33   
+HoVer, 4 articles         20/33       17/33       23/33   
+All                       61/100      51/100      71/100  
+
+HoVer, supported          16/50        1/50       28/50   
+HoVer, not supported      45/50       50/50       43/50   
+
+Average per claim:
+
+                         lookups   seconds
+no-tools                     0.0       3.4
+one-search                   2.0       4.3
+agent                        5.5       8.3
+
+2 runs gave no verdict (for example a refusal, or out of lookups). They count as wrong. The results viewer lists them on this run's page, under "Claims with no verdict, or that stopped with an error".
 ```
 
 How do the results compare with your predictions? Where were you furthest off? Use the numbers from your run, by number of articles.
 
->
+> for 3 nd 4 articles, I was off in thinking that 1 lookup would outperform no tools, when it actually did pretty good and almost as good as the agent at times.
 
 Does the gap between the agent and the one-search baseline grow with the number of articles? What in the claims or the traces explains what you see?
 
->
+> Not much between 2 and 3 articles, but yes by 3 and 4 (almost 20 verdicts-difference). The more articles, the more the one-search struggled to reach a verdict on the claim.
 
 The no-tools baseline read nothing. How did it do, and what does that tell you about these claims?
 
->
+> It did pretty well, which means these claims are probably not too difficult to deduct or don't require much confirmation.
 
 ## 2b. Check the evidence yourself
 
@@ -193,19 +212,19 @@ Fill in one row for each of the first five claims in your full run, in the order
 
 | # | Claim (first few words) | Agent's verdict | Matched the dataset's label? | Does the quoted evidence support that verdict? | Why or why not |
 |---|---|---|---|---|---|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Gregg Rolie and Rob Tyner, are not a keyboardist.|refuted | no| yes| as the wikipedia article claims Greff is indeed a keyboardist|
+| 2 |Patrick Mercer was suspended in April 2014.| refuted| no|yes | he resigned first|
+| 3 |Queen Medb of Connacht made her invasion in a province |supported |yes | yes| the invasion was in the northern part and a dialect of Scots is spoken|
+| 4 |John McTiernan is the director of 1999 American heist film | refuted| yes|yes | cast list is wrong|
+| 5 |The Formula One World Champion is the winner of the 1963 Lombank Trophy | refuted| no| yes| the winner is a different person|
 
 Of the five, how many matched the dataset's label, and for how many of those does the quoted evidence support the verdict?
 
->
+> 2 matched, and their quoted evidence does hold for the verdict.
 
 Is accuracy alone a good measure of this agent? Why or why not?
 
->
+> Not by itself, but it is an important measure. We would want an agent that is able to reach the correct claims with the appropiate evidence.
 
 # Part 3 (extra credit): Why the agent fails, and one change
 

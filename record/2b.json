@@ -1,0 +1,52 @@
+{
+  "step": "2b",
+  "title": "Check the evidence yourself",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": true,
+  "checkpoints": [
+    {
+      "text": "Your table and answers are in WRITEUP.md",
+      "reached": true
+    }
+  ],
+  "answers": [
+    {
+      "question": "Fill in one row for each of the first five claims in your full run, in the order of the claims file, where the agent's verdict is *supported* or *refuted*.",
+      "answer": "1 | Gregg Rolie and Rob Tyner, are not a keyboardist. | refuted | no | yes | as the wikipedia article claims Greff is indeed a keyboardist\n2 | Patrick Mercer was suspended in April 2014. | refuted | no | yes | he resigned first\n3 | Queen Medb of Connacht made her invasion in a province | supported | yes | yes | the invasion was in the northern part and a dialect of Scots is spoken\n4 | John McTiernan is the director of 1999 American heist film | refuted | yes | yes | cast list is wrong\n5 | The Formula One World Champion is the winner of the 1963 Lombank Trophy | refuted | no | yes | the winner is a different person",
+      "written_by": "the student"
+    },
+    {
+      "question": "Of the five, how many matched the dataset's label, and for how many of those does the quoted evidence support the verdict?",
+      "answer": "2 matched, and their quoted evidence does hold for the verdict.",
+      "written_by": "the student"
+    },
+    {
+      "question": "Is accuracy alone a good measure of this agent? Why or why not?",
+      "answer": "Not by itself, but it is an important measure. We would want an agent that is able to reach the correct claims with the appropiate evidence.",
+      "written_by": "the student"
+    }
+  ],
+  "record": [
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "reached": [
+        "Your table and answers are in WRITEUP.md"
+      ],
+      "time": "2026-11-25T11:07:46-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-25T11:07:49-06:00",
+      "kind": "status",
+      "text": "Waiting while you check five claims' evidence"
+    }
+  ],
+  "turns": 1
+}

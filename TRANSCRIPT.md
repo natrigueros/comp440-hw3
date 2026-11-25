@@ -41,7 +41,7 @@ If you don't have a `.env` yet, run `cp .env.example .env` in your own terminal 
 <!-- transcript-session: b24fcd33-65e6-422a-82c3-095e021f1fff | 2026-11-23T03:20:14.087Z -->
 ## Session `b24fcd33` — 2026-11-23 03:20:14
 
-*23 user turns. Tool output shortened; reasoning omitted.*
+*26 user turns. Tool output shortened; reasoning omitted.*
 
 **User:**
 Start step 0a.
@@ -1170,6 +1170,204 @@ It takes about 10 minutes and costs about 28 cents. Keep that tab open and your 
 
 Once it has started, type your predictions and your answer under 1e in `WRITEUP.md`, in your editor, while it runs.
 
+**User:**
+Start step 2a. Read .workbench/2a.md and follow it from now on, in place of your instructions for any other step.
+
+**Claude:**
+- 🔧 `Read` — /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/.workbench/2a.md
+
+  ```
+  253	# This session: one step of the assignment
+  254	
+  255	You help with one step, and only this one: 2a, "Compare accuracy", in Part 2 (The agent against the baselines).
+  256	What this step is, as the page says it under the step's title: In this step you find out how often each of the three versions matched the dataset's label on your 100 evaluation claims. You comp...
+  257	This step takes about 25 minutes, as the page says. Say so if the student asks.
+  258	The student talks to you in a terminal. Beside it, a web page shows every step of the assignment,
+  259	each with its own Claude Code session, and this step's instructions, which say:
+  260	
+  261	<step-instructions>
+  262	In this step you find out how often each of the three versions matched the dataset's label on your 100
+  263	evaluation claims. You compare those numbers with your predictions from 1e.
+  264	
+  ... (138 more lines)
+  ```
+
+- 🔧 `Bash` — ls runs/part2
+
+  ```
+  agent.jsonl
+  no-tools.jsonl
+  one-search.jsonl
+  report.txt
+  run.json
+  ```
+
+- 🔧 `Bash` — python3 .workbench/page.py 2a status "Full run finished; waiting for you to read Accuracy"
+
+  ```
+  The page now says: Full run finished; waiting for you to read Accuracy
+  ```
+
+I'm now on step 2a.
+
+In this step you find out how often each of the three versions matched the dataset's label on your 100 evaluation claims. Then you compare those numbers with your predictions from 1e. The full run has finished: `runs/part2/report.txt` is there.
+
+Next, open **Results** at the top of the homework page, then "runs/part2", and read "Accuracy". When you're ready, ask me to paste the report into the empty block under 2a in `WRITEUP.md`.
+
+**User:**
+paste the report into WRITEUP.md
+
+**Claude:**
+- 🔧 `Read` — /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/runs/part2/report.txt
+
+  ```
+  1	Share of claims where the verdict matched the label:
+  2	
+  3	                          no-tools  one-search       agent
+  4	HoVer, 2 articles         18/34       18/34       23/34   
+  5	HoVer, 3 articles         23/33       16/33       25/33   
+  6	HoVer, 4 articles         20/33       17/33       23/33   
+  7	All                       61/100      51/100      71/100  
+  8	
+  9	HoVer, supported          16/50        1/50       28/50   
+  10	HoVer, not supported      45/50       50/50       43/50   
+  11	
+  12	Average per claim:
+  ... (8 more lines)
+  ```
+
+- 🔧 `Bash` — grep -n -E "^## |^\`\`\`" WRITEUP.md
+
+  ````
+  10:## Learning goals
+  23:## 0a. Get your copy running
+  27:## 0b. Ask the model to assess a claim without tools
+  34:## 0c. Give it one search
+  45:## 0d. Run the agent and read its trace
+  61:## 1a. Design the loop
+  69:```
+  110:```
+  121:## 1b. Be the agent
+  135:## 1c. Watch the agent work
+  149:## 1d. Write the agent's instructions
+  155:## 1e. Start the full run, and predict
+  ... (7 more lines)
+  ````
+
+- 🔧 `Read` — /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/WRITEUP.md
+
+  ````
+  171	## 2a. Compare accuracy
+  172	
+  173	Ask Claude to paste the report of your full run, from `runs/part2/report.txt`, into the empty block below.
+  174	
+  175	```
+  176	```
+  177	
+  178	How do the results compare with your predictions? Where were you furthest off? Use the numbers from your run, by number of articles.
+  179	
+  180	>
+  181	
+  182	Does the gap between the agent and the one-search baseline grow with the number of articles? What in the claims or the traces explains what you see?
+  ... (7 more lines)
+  ````
+
+- 🔧 `Edit` — /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/WRITEUP.md
+
+  ```
+  The file /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/WRITEUP.md has been updated successfully.
+  ```
+
+- 🔧 `Bash` — python3 .workbench/page.py 2a status "Report pasted; waiting for your answers in WRITEUP.md"
+
+  ```
+  The page now says: Report pasted; waiting for your answers in WRITEUP.md
+  ```
+
+```
+Share of claims where the verdict matched the label:
+
+                          no-tools  one-search       agent
+HoVer, 2 articles         18/34       18/34       23/34   
+HoVer, 3 articles         23/33       16/33       25/33   
+HoVer, 4 articles         20/33       17/33       23/33   
+All                       61/100      51/100      71/100  
+
+HoVer, supported          16/50        1/50       28/50   
+HoVer, not supported      45/50       50/50       43/50   
+
+Average per claim:
+
+                         lookups   seconds
+no-tools                     0.0       3.4
+one-search                   2.0       4.3
+agent                        5.5       8.3
+
+2 runs gave no verdict (for example a refusal, or out of lookups). They count as wrong. The results viewer lists them on this run's page, under "Claims with no verdict, or that stopped with an error".
+```
+
+I pasted the report word for word into the empty block under 2a in `WRITEUP.md`. I changed nothing else in the file.
+
+Next, read "Accuracy" for runs/part2 in the results viewer, which shows the same counts as percentages. Then type your answers to the three 2a questions in `WRITEUP.md`, in your editor. You don't need to reply here, but you can ask how to read any row.
+
+**User:**
+Start step 2b.
+
+**Claude:**
+- 🔧 `Bash` — ls .workbench/
+
+  ```
+  0a.json
+  0a.md
+  0b.json
+  0b.md
+  0c.json
+  0c.md
+  0d.json
+  0d.md
+  1a.json
+  1a.md
+  1b.json
+  1b.md
+  ... (18 more lines)
+  ```
+
+- 🔧 `Read` — /Users/naylatrigueros/Documents/COMP 127/comp440-hw3/.workbench/2b.md
+
+  ```
+  253	# This session: one step of the assignment
+  254	
+  255	You help with one step, and only this one: 2b, "Check the evidence yourself", in Part 2 (The agent against the baselines).
+  256	What this step is, as the page says it under the step's title: In this step you find out whether the agent's quoted evidence really supports its verdicts.
+  257	This step takes about 35 minutes, as the page says. Say so if the student asks.
+  258	The student talks to you in a terminal. Beside it, a web page shows every step of the assignment,
+  259	each with its own Claude Code session, and this step's instructions, which say:
+  260	
+  261	<step-instructions>
+  262	In this step you find out whether the agent's quoted evidence really supports its verdicts.
+  263	
+  264	**Words in this step:** The *evidence* is the sentences the agent quoted from Wikipedia.
+  ... (138 more lines)
+  ```
+
+- 🔧 `Bash` — python3 .workbench/page.py 2b status "Waiting while you check five claims' evidence"
+
+  ```
+  The page now says: Waiting while you check five claims' evidence
+  ```
+
+I'm now on step 2b.
+
+In this step you find out whether the agent's quoted evidence really supports its verdicts. Here's how to find the five claims you check:
+
+1. Open **Results** at the top of the homework page, then "runs/part2".
+2. Click "Clear the filters".
+3. Set "Verdict" in "The agent" box to "supported or refuted", and leave "Order" at "Order of the claims file".
+
+Rows 1 to 5 of the claims table are your five claims. For each one, read its "Quoted evidence" and click each "entry N" to see that quote in the trace. Then fill in its row of the table under 2b in `WRITEUP.md`, in your editor.
+
+If you want, I can show you a claim's verdict, quotes and explanation here. I can also run a `read` lookup to show more of a page as the agent read it.
+
 <!-- end-session: b24fcd33-65e6-422a-82c3-095e021f1fff -->
 
 # 0b. Ask the model to assess a claim without tools
@@ -1203,6 +1401,14 @@ This step was done in the conversation under 0a, session `b24fcd33`, from the me
 # 1e. Start the full run, and predict
 
 This step was done in the conversation under 0a, session `b24fcd33`, from the message “Start step 1e.”
+
+# 2a. Compare accuracy
+
+This step was done in the conversation under 0a, session `b24fcd33`, from the message “Start step 2a.”
+
+# 2b. Check the evidence yourself
+
+This step was done in the conversation under 0a, session `b24fcd33`, from the message “Start step 2b.”
 
 # Other Claude sessions in this folder
 

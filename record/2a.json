@@ -1,0 +1,92 @@
+{
+  "step": "2a",
+  "title": "Compare accuracy",
+  "session_id": null,
+  "conversations": [
+    "b24fcd33-65e6-422a-82c3-095e021f1fff"
+  ],
+  "complete": true,
+  "checkpoints": [
+    {
+      "text": "The full run is finished",
+      "reached": true
+    },
+    {
+      "text": "The report and your answers are in WRITEUP.md",
+      "reached": true
+    }
+  ],
+  "answers": [
+    {
+      "question": "Ask Claude to paste the report of your full run, from `runs/part2/report.txt`, into the empty block below.",
+      "answer": "Share of claims where the verdict matched the label:\n\n                          no-tools  one-search       agent\nHoVer, 2 articles         18/34       18/34       23/34   \nHoVer, 3 articles         23/33       16/33       25/33   \nHoVer, 4 articles         20/33       17/33       23/33   \nAll                       61/100      51/100      71/100  \n\nHoVer, supported          16/50        1/50       28/50   \nHoVer, not supported      45/50       50/50       43/50   \n\nAverage per claim:\n\n                         lookups   seconds\nno-tools                     0.0       3.4\none-search                   2.0       4.3\nagent                        5.5       8.3\n\n2 runs gave no verdict (for example a refusal, or out of lookups). They count as wrong. The results viewer lists them on this run's page, under \"Claims with no verdict, or that stopped with an error\".",
+      "written_by": "Claude, in 2a's session"
+    },
+    {
+      "question": "How do the results compare with your predictions? Where were you furthest off? Use the numbers from your run, by number of articles.",
+      "answer": "for 3 nd 4 articles, I was off in thinking that 1 lookup would outperform no tools, when it actually did pretty good and almost as good as the agent at times.",
+      "written_by": "the student"
+    },
+    {
+      "question": "Does the gap between the agent and the one-search baseline grow with the number of articles? What in the claims or the traces explains what you see?",
+      "answer": "Not much between 2 and 3 articles, but yes by 3 and 4 (almost 20 verdicts-difference). The more articles, the more the one-search struggled to reach a verdict on the claim.",
+      "written_by": "the student"
+    },
+    {
+      "question": "The no-tools baseline read nothing. How did it do, and what does that tell you about these claims?",
+      "answer": "It did pretty well, which means these claims are probably not too difficult to deduct or don't require much confirmation.",
+      "written_by": "the student"
+    }
+  ],
+  "record": [
+    {
+      "kind": "mark",
+      "reached": [
+        "The full run is finished"
+      ],
+      "time": "2026-11-25T10:41:48-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Listed files",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T10:52:14-06:00"
+    },
+    {
+      "kind": "asked",
+      "text": "paste the report into WRITEUP.md",
+      "time": "2026-11-25T11:02:34-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Find the headings and code blocks in WRITEUP.md",
+      "status": "ok",
+      "file": null,
+      "time": "2026-11-25T11:02:36-06:00"
+    },
+    {
+      "kind": "ran",
+      "text": "Edited WRITEUP.md",
+      "status": "ok",
+      "file": null,
+      "reached": [
+        "The report and your answers are in WRITEUP.md"
+      ],
+      "time": "2026-11-25T11:02:42-06:00"
+    }
+  ],
+  "told_the_page": [
+    {
+      "time": "2026-11-25T10:52:15-06:00",
+      "kind": "status",
+      "text": "Full run finished; waiting for you to read Accuracy"
+    },
+    {
+      "time": "2026-11-25T11:02:43-06:00",
+      "kind": "status",
+      "text": "Report pasted; waiting for your answers in WRITEUP.md"
+    }
+  ],
+  "turns": 2
+}
